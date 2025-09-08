@@ -6,6 +6,40 @@
 .err-msg{
     color: red;
 }
+/* Container */
+#search-field {
+  width: 100%;
+  max-width: 400px;
+  padding: 10px 14px;
+  margin-top: 6px;
+  font-size: 15px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  outline: none;
+  transition: all 0.2s ease-in-out;
+  box-sizing: border-box;
+}
+
+/* Focus effect */
+#search-field:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+}
+
+/* Label styling */
+label[for="search-field"] {
+  font-weight: 600;
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 4px;
+  display: inline-block;
+}
+
+/* Optional hover */
+#search-field:hover {
+  border-color: #999;
+}
+
 .add-btn {
   background-color: #007bff;
   color: white;

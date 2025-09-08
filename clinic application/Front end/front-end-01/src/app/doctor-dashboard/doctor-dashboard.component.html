@@ -1,4 +1,19 @@
 <h2>Doctors</h2>
+  <div>
+    <label for="search-field">Search patient record here</label>
+    <br>
+    <input
+    type="text"
+    id="search-field"
+    placeholder="Search doctors by ID, name, email, or phone..."
+    [searchFilter]="AllDoctors"
+    [searchFields]="['doctorID','doctorName','doctorEmail','doctorPhone','specialization']"
+    [minChars]="1"
+    [showAllWhenEmpty]="true"
+    (searchResults)="visibleDoctors = $event"
+  />
+
+  </div>
 <button (click)="activateForm()" class="section-title" class="add-btn">+Add New Doctor</button>
 @if(AddBtnPressed){
 <form [formGroup]="addDoctorForm" (ngSubmit)="onSubmit()" id="addDoctorForm" class="doctor-form">

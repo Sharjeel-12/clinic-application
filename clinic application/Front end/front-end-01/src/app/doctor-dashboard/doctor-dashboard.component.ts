@@ -3,10 +3,11 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { DoctorDataService } from '../Services/doctor-data.service';
 import { Doctor } from '../models/doctor';
 import { CreateDoctorDto } from '../models/create-doctor-dto';
+import { SearchFilterDirective } from '../directives/search-filter.directive';
 @Component({
   selector: 'app-doctor-dashboard',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule,SearchFilterDirective],
   providers: [DoctorDataService],
   templateUrl: './doctor-dashboard.component.html',
   styleUrl: './doctor-dashboard.component.scss'
@@ -18,7 +19,7 @@ export class DoctorDashboardComponent {
   editDoctorForm!: FormGroup;
 
   AllDoctors!: Doctor[];
-
+  visibleDoctors!:Doctor[];
   AddBtnPressed: boolean = false;
 
   EditBtnPressed: boolean = false;
@@ -190,6 +191,7 @@ export class DoctorDashboardComponent {
     this.dataService.getAllDoctors().subscribe({
       next: (res) => {
         this.AllDoctors = res;
+        this.visibleDoctors=this.AllDoctors;
         this.last_id = this.AllDoctors[this.AllDoctors.length - 1].doctorID;
         const idCtrl = this.addDoctorForm.get('doctorID');
         console.log("Hello");

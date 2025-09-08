@@ -7,7 +7,7 @@ import { CreateDoctorDto } from '../models/create-doctor-dto';
   providedIn: 'root'
 })
 export class DoctorDataService {
-baseUrl:string="http://localhost:49428/api/Doctors";
+baseUrl:string="https://localhost:49428/api/Doctors";
   constructor(private http:HttpClient) {
    }
 

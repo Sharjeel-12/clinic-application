@@ -1,4 +1,19 @@
   <h2 class="section-title">Patients</h2>
+  <div>
+    <label for="search-field">Search patient record here</label>
+    <br>
+    <input
+    type="text"
+    id="search-field"
+    placeholder="Search patients by ID, name, email, or phone..."
+    [searchFilter]="AllPatients"
+    [searchFields]="['patientID','patientName','patientEmail','patientPhone','patientDescription']"
+    [minChars]="1"
+    [showAllWhenEmpty]="true"
+    (searchResults)="visiblePatients = $event"
+  />
+
+  </div>
   <button (click)="activateForm()" class="add-btn">+Add New Patient</button>
   @if(AddBtnPressed){
     <form [formGroup]="addPatientForm" (ngSubmit)="onSubmit()" id="addPatientForm" class="patient-form">
@@ -126,7 +141,7 @@
   </thead>
   <tbody>
 
-@for(patient of AllPatients; track patient){
+@for(patient of visiblePatients; track patient){
     <tr>
       <td>{{patient.patientID}}</td>
       <!-- <td>{{patient.visitID}}</td> -->

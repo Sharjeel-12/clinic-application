@@ -3,10 +3,11 @@ import { PatientDataService } from '../Services/patient-data.service';
 import { Patient } from '../models/patient';
 import { CreatePatientDto } from '../models/create-patient-dto';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { SearchFilterDirective } from '../directives/search-filter.directive';
 @Component({
   selector: 'app-patient-dashboard',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule,SearchFilterDirective],
   providers: [PatientDataService],
   templateUrl: './patient-dashboard.component.html',
   styleUrl: './patient-dashboard.component.scss'
@@ -24,7 +25,7 @@ get EditForm(){
   return this.editPatientForm.controls;
 }
   AllPatients!: Patient[];
-
+  visiblePatients: any[] = [];
   AddBtnPressed: boolean = false;
 
   EditBtnPressed: boolean = false;
@@ -158,6 +159,9 @@ get EditForm(){
 
 
 
+  refreshVisible() {
+  this.visiblePatients = this.AllPatients;
+  }
   // implements the ngOninit hook
   ngOnInit(): void {
 
@@ -192,6 +196,7 @@ get EditForm(){
         console.log(this.last_id);
         idCtrl?.setValue(Number(this.last_id) + 1);
         idCtrl?.setValidators([Validators.required, Validators.min(Number(this.last_id) + 1)])
+        this.visiblePatients=this.AllPatients;
       },
       error: (err) => { alert(err) }
 

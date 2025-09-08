@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 })
 export class PatientDataService {
 
-baseUrl:string="http://localhost:49428/api/Patients";
+baseUrl:string="https://localhost:49428/api/Patients";
   constructor(private http:HttpClient) {}
 
   getAllPatients():Observable<Patient[]>{
